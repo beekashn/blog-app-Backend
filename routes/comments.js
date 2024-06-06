@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user");
+const User = require("../models/User");
 const { route } = require("./auth");
 const bcrypt = require("bcrypt");
 const Post = require("../models/post");
@@ -53,8 +53,5 @@ router.get("/post/:postId", async (req, res) => {
     res.status(500).json(error);
   }
 });
-
-
-
 
 module.exports = router;
