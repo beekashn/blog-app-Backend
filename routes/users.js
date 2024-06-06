@@ -3,8 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 const { route } = require("./auth");
 const bcrypt = require("bcrypt");
-const Post = require("../models/post");
-const Comment = require("../models/comment");
+const Post = require("../models/Post");
+const Comment = require("../models/Comment");
 const verifyToken = require("../verifyToken");
 
 //UPDATE
