@@ -64,13 +64,18 @@ router.get("/logout", async (req, res) => {
 
 //Refetch User
 router.get("/refetch", (req, res) => {
+  console.log("Refetch endpoint hit");
   const token = req.cookies.token;
-  jwt.verify(token, process.env.SECRET, {}, async (error, data) => {
+  if (!token) {
+    return res.status(401).json("You are not authenticated!");
+  }
+  jwt.verify(token, process.env.SECRET, (error, data) => {
     if (error) {
-      return res.status(404).json(error);
+      return res.status(403).json("Token Invalid!");
     }
     res.status(200).json(data);
   });
 });
+
 
 module.exports = router;

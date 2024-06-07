@@ -28,7 +28,7 @@ dotenv.config();
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://iblog-app.netlify.app", credentials: true }));
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
@@ -41,7 +41,6 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, fn) => {
     fn(null, req.body.img);
-    // fn(null, Lion.jpg);
   },
 });
 
