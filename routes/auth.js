@@ -64,7 +64,6 @@ router.get("/logout", async (req, res) => {
 
 //Refetch User
 router.get("/refetch", (req, res) => {
-  console.log("Refetch endpoint hit");
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json("You are not authenticated!");
