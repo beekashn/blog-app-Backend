@@ -44,11 +44,16 @@ router.post("/login", async (req, res) => {
     );
     const { password, ...info } = user._doc;
 
-    res.cookie("token", accessToken).status(200).json(info);
+    res.cookie("token", accessToken, {
+      httpOnly: true,
+      sameSite: "None", // Ensure this is set if you're testing locally
+      secure: true,    // Ensure this is set in production (HTTPS)
+    }).status(200).json(info);
   } catch (error) {
     res.status(500).json(error);
   }
 });
+
 
 //LogOut
 router.get("/logout", async (req, res) => {
@@ -64,7 +69,6 @@ router.get("/logout", async (req, res) => {
 
 //Refetch User
 router.get("/refetch", (req, res) => {
-  console.log("Refetch endpoint hit");
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json("You are not authenticated!");
