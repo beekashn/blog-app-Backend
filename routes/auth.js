@@ -42,13 +42,9 @@ router.post("/login", async (req, res) => {
         expiresIn: "3d",
       }
     );
-    const { password, ...info } = user._doc;
+    const { password, ...info, accessToken } = user._doc;
 
-    res.cookie("token", accessToken, {
-      httpOnly: true,
-      sameSite: "None", // Ensure this is set if you're testing locally
-      secure: true,    // Ensure this is set in production (HTTPS)
-    }).status(200).json(info);
+    res.status(200).json(info);
   } catch (error) {
     res.status(500).json(error);
   }
