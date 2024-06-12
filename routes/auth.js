@@ -44,12 +44,10 @@ router.post("/login", async (req, res) => {
     );
     const { password, ...info } = user._doc;
     res.status(200).json({ ...info, accessToken });
-
   } catch (error) {
     res.status(500).json(error);
   }
 });
-
 
 //LogOut
 router.get("/logout", async (req, res) => {
@@ -76,6 +74,5 @@ router.get("/refetch", (req, res) => {
     res.status(200).json(data);
   });
 });
-
 
 module.exports = router;
